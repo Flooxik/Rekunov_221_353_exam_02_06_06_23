@@ -27,7 +27,7 @@ CMD ["./echoServer"]
 EXPOSE 33333
 
 # docker build -t name:latest -f ManagerServer.Dockerfile .
-# docker run -p = 33333:33333 name:latest
+# docker run -p 33333:33333 name:latest
 # docker container commit "Container ID" name:latest
 # docker tag name:latest dockerUser/name:latest
 # docker push dockerUser/name:latest
