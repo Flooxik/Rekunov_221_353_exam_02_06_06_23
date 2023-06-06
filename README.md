@@ -1,6 +1,7 @@
-"# Rekunov_221_353_exam_02_06_06_23" 
-"# Rekunov_221_353_exam_02_06_06_23" 
+https://hub.docker.com/r/rmikuil/name
 
-При попытке запуска сервер выдает ошибку, исправляется
-
-DokerHub не позволяет выгрузить файлы
+# docker build -t name:latest -f ManagerServer.Dockerfile .
+# docker run -p = random:33333 name:latest
+# docker container commit "Container ID" name:latest
+# docker tag name:latest rmikuil/name:latest
+# docker push rmikuil/name:latest
