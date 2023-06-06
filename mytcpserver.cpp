@@ -41,18 +41,24 @@ void MyTcpServer::slotNewConnection(){
     }
 }
 
-void MyTcpServer::slotServerRead(){
-    QTcpSocket* socket = (QTcpSocket*)sender();
+void MyTcpServer::slotServerRead() {
+    QTcpSocket* socket = qobject_cast<QTcpSocket*>(sender());
     int desc = socket->socketDescriptor();
-    QString res = "";
-    while(mTcpSocket[desc]->bytesAvailable()>0)
-    {
-        QByteArray array =socket->readAll();
-        res.append(array);
-    }
-    socket->write(parsing(res.toUtf8(), socket->socketDescriptor()));
-}
+    
+    while (socket->canReadLine()) {
+        QByteArray data = socket->readLine();
+        QString strReceived = QString::fromUtf8(data.trimmed());
+        
+        if (strReceived.isEmpty()) {
+            continue;  // Пропускаем пустые строки
+        }
 
+        // Обрабатываем только полные команды с символом новой строки
+        if (strReceived.endsWith('\n')) {
+            strReceived.chop(1);  // Удаляем символ новой строки
+            socket->write(parsing(strReceived, desc));
+}
+        
 void MyTcpServer::slotClientDisconnected(){
     QTcpSocket* socket = (QTcpSocket*)sender();
     for(auto it = mTcpSocket.begin(); it !=mTcpSocket.end();it++)
