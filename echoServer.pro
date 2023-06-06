@@ -19,7 +19,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     db.cpp \
-    functionforgame.cpp \
+    gamefunc.cpp \
         main.cpp \
     mytcpserver.cpp
 
@@ -30,5 +30,5 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     db.h \
-    functionforgame.h \
+    gamefunc.h \
     mytcpserver.h
